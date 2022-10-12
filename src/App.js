@@ -1,23 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import CalculatorControl from "./components/CalculatorControl";
+import CalculatorResults from "./components/CalculatorResults";
+import logo from "./images/logo.svg";
 
 function App() {
+  const [bill, setBill] = useState(0);
+  const [peopleNum, setPeopleNum] = useState(0);
+  const [tipPercent, setTipPercent] = useState(0);
+
+  const resetFunction = () => {
+    setBill(0);
+    setPeopleNum(0);
+    setTipPercent(0);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="logo">
+        <img src={logo} alt="" />
+      </div>
+      <div className="calculator">
+        <CalculatorControl
+          setBill={setBill}
+          bill={bill}
+          peopleNum={peopleNum}
+          setPeopleNum={setPeopleNum}
+          tipPercent={tipPercent}
+          setTipPercent={setTipPercent}
+        />
+        <CalculatorResults
+          bill={bill}
+          peopleNum={peopleNum}
+          tipPercent={tipPercent}
+          resetFunction={resetFunction}
+        />
+      </div>
     </div>
   );
 }
